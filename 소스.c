@@ -1,35 +1,37 @@
 #include <stdio.h>
 
-void bubble_sort(int arr[], int count) //정렬할 배열과 요소의 개수
-{
-	int temp;
-
-	for (int i = 0; i < count; i++)
-	{
-		for (int j = 0; j < count - 1; j++)
-		{
-			if (arr[j] > arr[j + 1])
-			{
-				temp = arr[j];
-				arr[j] = arr[j + 1];
-				arr[j + 1] = temp;
-			}
-		}
-	}
-}
+#define SIZE 10
 
 int main(void)
 {
-	int numArr[10] = { 8, 4, 2, 5, 3, 7, 10, 1, 6, 9 };
+	int list[SIZE] = { 3, 2, 9, 7, 1, 4, 8, 0, 6, 5 };
 
-	bubble_sor(numArr, sizeof(numArr) / sizeof(int));
+	int i, j, temp, least;
 
-	for (int i = 0; i < 10; i++)
+	for (i = 0; i < SIZE - 1; i++)
 	{
-		printf("%d", numArr[i]);
+		least = i;
+
+		for (j = i + 1; j < SIZE; j++)
+		{
+			if (list[j] < list[least])
+			{
+				least = j;
+			}
+		}
+
+		temp = list[i];
+		list[i] = list[least];
+		list[least] = temp;
+	}
+
+	for (i = 0; i < SIZE; i++)
+	{
+		printf("%d", list[i]);
 	}
 
 	printf("\n");
 
 	return 0;
 }
+
