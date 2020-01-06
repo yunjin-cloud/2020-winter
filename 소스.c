@@ -1,73 +1,35 @@
 #include <stdio.h>
-#include <Stdlib.h>
 
-#define MAX_STACK_SIZE 100
-#define MAX_STRING 100
-
-typedef struct
+void bubble_sort(int arr[], int count) //정렬할 배열과 요소의 개수
 {
-	char name[MAX_STRING];
-	int arr;
-} element;
+	int temp;
 
-element stack[MAX_STACK_SIZE];
-int top = -1;
-
-// 스택이 비었는지 확인하기
-int is_empty()
-{
-	return (top == -1);
-}
-
-// 스택이 꽉 찼는지 확인하기
-int is_full()
-{
-	return (top == (MAX_STACK_SIZE - 1));
-}
-
-// 삽입 함수
-void push(element item)
-{
-	if (is_full())
+	for (int i = 0; i < count; i++)
 	{
-		fprintf(stderr, "스택 포화 에러\n");
-		return;
+		for (int j = 0; j < count - 1; j++)
+		{
+			if (arr[j] > arr[j + 1])
+			{
+				temp = arr[j];
+				arr[j] = arr[j + 1];
+				arr[j + 1] = temp;
+			}
+		}
 	}
-	else stack[++top] = item;
-}
-
-// 삭제 함수
-element pop()
-{
-	if (is_empty())
-	{
-		fprintf(stderr, "스택 공백 에러\n");
-		exit(1);
-	}
-	else return stack[top--];
-}
-
-// 출력하기
-element peek()
-{
-	if (is_empty())
-	{
-		fprintf(stderr, "스택 공백 에러\n");
-		exit(1);
-	}
-	else return stack[top];
 }
 
 int main(void)
 {
-	element input_element = { "yunjin", 20182556 };
-	element output_element;
+	int numArr[10] = { 8, 4, 2, 5, 3, 7, 10, 1, 6, 9 };
 
-	push(input_element);
-	output_element = pop();
+	bubble_sor(numArr, sizeof(numArr) / sizeof(int));
 
-	printf("name : %s\n", output_element.name);
-	printf("arr : %d", output_element.arr);
+	for (int i = 0; i < 10; i++)
+	{
+		printf("%d", numArr[i]);
+	}
+
+	printf("\n");
 
 	return 0;
 }
